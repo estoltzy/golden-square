@@ -19,4 +19,4 @@ end
 
 todo_list = Todos.new
 todo_list.add_todo("Paint the fence")
-puts todo_list
+puts todo_list.print_todo
