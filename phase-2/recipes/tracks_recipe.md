@@ -13,18 +13,16 @@ _Include the initializer and public methods with all parameters and return value
 ```ruby
 # EXAMPLE
 
-class Reminder
-  def initialize(name) # name is a string
-    # ...
+class MusicHistory
+  def initialize(artist, song) # initialize a hash of strings
   end
 
-  def remind_me_to(task) # task is a string
-    # No return value
+ def add_track(new_artist, new_track)
+  # adds a new artist and track line to the hash
   end
 
-  def remind()
-    # Throws an exception if no task is set
-    # Otherwise, returns a string reminding the user to do the task
+  def print_tracklist
+  # prints track list
   end
 end
 ```
@@ -37,18 +35,14 @@ _Make a list of examples of how the class will behave in different situations._
 # EXAMPLE
 
 # 1
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
+track_list = MusicHistory
+track_list.add_track("Biffy Clyro", "Space")
+track_list.print_tracklist # => "Biffy Clyro", "Space"
 
 # 2
-reminder = Reminder("Kay")
-reminder.remind() # fails with "No task set."
-
-# 3
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
+track_list = MusicHistory
+track_list.add_track("Killing in the Name Of", "Rage Against the Machine")
+track_list.print_tracklist # => [("Biffy Clyro", "Space"), "Killing in the Name Of", "Rage Against the Machine"]
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
