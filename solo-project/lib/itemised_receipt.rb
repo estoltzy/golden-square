@@ -9,7 +9,7 @@ class ItemisedReceipt
 
   def calculate_total
     total = 0
-    @chosen_dishes.each |dish| do
+    @chosen_dishes.each do |dish|
     total += dish.price
     end
     return total
