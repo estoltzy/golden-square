@@ -26,39 +26,112 @@ _Consider diagramming out the classes and their relationships. Take care to
 focus on the details you see as important, not everything. The diagram below
 uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com_
 
-
+![Class diagram](../class_diagram.png)
 
 ```ruby
 # EXAMPLE
 
-# `extract_upper` extracts uppercase words from a list of words
-uppercase_words = extract_uppercase(mixed_words)
+class Dish
+  def initialize(dish, price)
+  end
+  
+  def dish
+  # returns dish
+  end
 
-mixed_words: a string (e.g. "hello WORLD")
-uppercase_words: a list of strings (e.g. ["WORLD"])
+  def price
+  # returns price
+  end
+end
 
-# The method doesn't print anything or have any other side-effects
+class Restaurant
+  def initialize # array for dishes, array for selected dishes
+  end
+
+  def add(dish)
+   # add an instance from Dish class
+  end
+
+  def dishes
+  # lists all dishes and their prices
+  end
+
+  def select_dishes(dish_choice)
+  # allows user to select dishes from list and add to new array
+  end
+
+  def calculate_receipt
+  # calculates cost from array of selected dishes and prints receipt
+  end
+
+  def delivery_estimate
+  # outputs confirmation message with estimated delivery time
+  end
+end
 ```
 
-## 3. Create Examples as Tests
+# 3. Create Examples as Integration Tests
 
-_Make a list of examples of what the method will take and return._
+_Create examples of the classes being used together in different situations and
+combinations that reflect the ways in which the system will be used._
 
 ```ruby
-# EXAMPLE
+# adds an instance from Dish class and returns it
+order = Restaurant.new
+first_dish = Dish.new("Fish and Chips", "£7.99")
+order.add(first_dish)
+order.dishes # -> "Fish and Chips", "£7.99"
 
-extract_uppercase("hello WORLD") => ["WORLD"]
-extract_uppercase("HELLO WORLD") => ["HELLO", "WORLD"]
-extract_uppercase("hello world") => []
-extract_uppercase("hello WoRLD") => []
-extract_uppercase("hello WORLD!") => ["WORLD"]
-extract_uppercase("") => []
-extract_uppercase(nil) throws an error
+# adds multiple instances from Dish class and lists them
+order = Restaurant.new
+first_dish = Dish.new("Fish and Chips", "£7.99")
+second_dish = Dish.new("Bangers and Mash", "£9.99")
+order.add(first_dish)
+order.add(second_dish)
+order.dishes # -> [first_dish, second_dish]
+
+# allows user to select dishes from list 
+order = Restaurant.new
+first_dish = Dish.new("Fish and Chips", "£7.99")
+second_dish = Dish.new("Bangers and Mash", "£9.99")
+third_dish = Dish.new("Waldorf Salad", "£6.99")
+order.add(first_dish)
+order.add(second_dish)
+order.add(third_dish)
+order.select_dishes(first_dish) # -> [first_dish]
+
+# calculates cost of selected dishes
+order = Restaurant.new
+first_dish = Dish.new("Fish and Chips", "£7.99")
+second_dish = Dish.new("Bangers and Mash", "£9.99")
+third_dish = Dish.new("Waldorf Salad", "£6.99")
+order.add(first_dish)
+order.add(second_dish)
+order.add(third_dish)
+order.select_dishes(first_dish)
+order.calculate_receipt # -> "£7.99"
+
+# Write test for delivery_estimate
+```
+
+## 4. Create Examples as Unit Tests
+
+_Create examples, where appropriate, of the behaviour of each relevant class at
+a more granular level of detail._
+
+```ruby
+# Returns name of dish
+new_dish = Dish.new("Fish and Chips", "£7.99")
+new_dish.dish # => "Fish and Chips"
+
+# Returns price of dish
+new_dish = Dish.new("Fish and Chips", "£7.99")
+new_dish.price # => "£7.99"
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
 
-## 4. Implement the Behaviour
+## 5. Implement the Behaviour
 
-_After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour._
-
+_After each test you write, follow the test-driving process of red, green,
+refactor to implement the behaviour._
