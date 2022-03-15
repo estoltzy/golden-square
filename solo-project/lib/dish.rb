@@ -1,12 +1,14 @@
 class Dish
   def initialize(dish, price)
+    @dish = dish
+    @price = price
   end
   
   def dish
-  # returns dish
+    return @dish
   end
 
   def price
-  # returns price
+    return @price
   end
 end
