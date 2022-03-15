@@ -32,6 +32,3 @@ RSpec.describe 'Itemised Receipt Integration' do
     expect(new_order.calculate_total).to eq 14.98
   end
 end
-
-
-# # Write test for delivery_estimate
