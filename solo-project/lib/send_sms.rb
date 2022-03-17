@@ -6,26 +6,21 @@ class EstimatedDelivery
     @requester = requester
   end
 
-  def create_client(account_sid, auth_token)   
+  def delivery_message(account_sid, auth_token)   
     account_sid = ENV['TWILIO_ACCOUNT_SID']
     auth_token = ENV['TWILIO_AUTH_TOKEN']
     @client = @requester.new(account_sid, auth_token)
-    return @client
-  end
 
-  def delivery_message
-    message = @client.messages.create(:body => "Thank you! Your order was placed and will be delivered before #{time1hr.strftime("%I:%M%p")}.",
-    :to => "17627752693",  
-    :from => "+447460305196")
-
-    puts message.sid
+    message = @client.messages.create(:body => "Thank you! Your order was placed and will be delivered before #{@time1hr}.",
+    :to => "+447460305196",  
+    :from => "+17627752693")
+    
+    return message.sid
    end
 
-  def send_text
+  def time_estimate
     time = Time.new
-    time1hr = time + 3600
-    puts "Thank you! Your order was placed and will be delivered before #{time1hr.strftime("%I:%M%p")}."
-    create_client
-    delivery_message
+    @time1hr = time + 3600
   end
 end
+
